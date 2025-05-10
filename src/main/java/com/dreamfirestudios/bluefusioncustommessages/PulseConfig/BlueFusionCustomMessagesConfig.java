@@ -18,6 +18,12 @@ public class BlueFusionCustomMessagesConfig extends StaticPulseConfig<BlueFusion
     @StorageComment("Display debugs in the console logs for changes in this config!")
     public boolean debugConfig = false;
 
+    public String firstJoinMessage = "Welcome #ffffff%player_name% to %server_name% for the first time!";
+    public String joinMessage = "Welcome #ffffff%player_name% to %server_name%!";
+    public String leaveMessage = "Goodbye #ffffff%player_name%!";
+    public String kickMessage = "You have been kicked from the server %server_name%!";
+    public String banMessage = "You have been kicked from the server %server_name%!";
+
     public void ToggleSystemEnabled(Consumer<BlueFusionCustomMessagesConfig> onSuccess, boolean newState){
         new BlueFusionCustomMessagesEnableSystemEvent(systemEnabled, newState);
         systemEnabled = newState;

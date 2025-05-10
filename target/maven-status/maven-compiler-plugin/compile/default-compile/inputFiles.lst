@@ -9,6 +9,9 @@ G:\Coding Portfolio\Dreamfire Studios\PluginRequests\BlueFusionCustomMessages\sr
 G:\Coding Portfolio\Dreamfire Studios\PluginRequests\BlueFusionCustomMessages\src\main\java\com\dreamfirestudios\bluefusioncustommessages\Event\BlueFusionCustomMessagesEnableSystemEvent.java
 G:\Coding Portfolio\Dreamfire Studios\PluginRequests\BlueFusionCustomMessages\src\main\java\com\dreamfirestudios\bluefusioncustommessages\Event\BlueFusionCustomMessagesReloadConfigEvent.java
 G:\Coding Portfolio\Dreamfire Studios\PluginRequests\BlueFusionCustomMessages\src\main\java\com\dreamfirestudios\bluefusioncustommessages\Event\BlueFusionCustomMessagesResetConfigEvent.java
+G:\Coding Portfolio\Dreamfire Studios\PluginRequests\BlueFusionCustomMessages\src\main\java\com\dreamfirestudios\bluefusioncustommessages\Listener\PlayerJoin.java
+G:\Coding Portfolio\Dreamfire Studios\PluginRequests\BlueFusionCustomMessages\src\main\java\com\dreamfirestudios\bluefusioncustommessages\Listener\PlayerKick.java
+G:\Coding Portfolio\Dreamfire Studios\PluginRequests\BlueFusionCustomMessages\src\main\java\com\dreamfirestudios\bluefusioncustommessages\Listener\PlayerLeave.java
 G:\Coding Portfolio\Dreamfire Studios\PluginRequests\BlueFusionCustomMessages\src\main\java\com\dreamfirestudios\bluefusioncustommessages\PlayerCommand\BlueFusionCustomMessagesPlayerCommand.java
 G:\Coding Portfolio\Dreamfire Studios\PluginRequests\BlueFusionCustomMessages\src\main\java\com\dreamfirestudios\bluefusioncustommessages\PulseConfig\BlueFusionCustomMessagesConfig.java
 G:\Coding Portfolio\Dreamfire Studios\PluginRequests\BlueFusionCustomMessages\src\main\java\com\dreamfirestudios\bluefusioncustommessages\PulseConfig\BlueFusionCustomMessagesInventoryItems.java
