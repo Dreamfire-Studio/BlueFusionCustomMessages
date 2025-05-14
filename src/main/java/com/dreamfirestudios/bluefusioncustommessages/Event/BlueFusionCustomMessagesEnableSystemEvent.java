@@ -17,10 +17,10 @@ public class BlueFusionCustomMessagesEnableSystemEvent extends Event {
     public BlueFusionCustomMessagesEnableSystemEvent(boolean oldState, boolean newState){
         this.oldState = oldState;
         this.newState = newState;
-        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessagesConfig.class, coreConfig -> {
+        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesConfig.class, coreConfig -> {
             if(coreConfig.systemEnabled) return;
             Bukkit.getScheduler().runTask(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), () -> {Bukkit.getPluginManager().callEvent(this);});
-        }, Throwable::printStackTrace);
+        });
     }
 
     public static HandlerList getHandlerList() {

@@ -12,39 +12,39 @@ import java.util.function.Consumer;
 
 public class BlueFusionCustomMessagesAPI {
     public static void BlueFusionCustomMessagesEnableSystem(Consumer<BlueFusionCustomMessagesConfig> onSuccess, boolean state){
-        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessagesConfig.class, coreConfig -> {
+        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesConfig.class, coreConfig -> {
             coreConfig.systemEnabled = state;
-            coreConfig.SaveConfig(onSuccess, Throwable::printStackTrace);
-        }, Throwable::printStackTrace);
+            coreConfig.SaveDreamConfig(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), onSuccess);
+        });
     }
 
     public static void BlueFusionCustomMessagesEnableSystem(Consumer<BlueFusionCustomMessagesConfig> onSuccess){
-        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessagesConfig.class, coreConfig -> {
+        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesConfig.class, coreConfig -> {
             coreConfig.systemEnabled = !coreConfig.systemEnabled;
-            coreConfig.SaveConfig(onSuccess, Throwable::printStackTrace);
-        }, Throwable::printStackTrace);
+            coreConfig.SaveDreamConfig(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), onSuccess);
+        });
     }
 
     public static void BlueFusionCustomMessagesSerializeItem(Consumer<BlueFusionCustomMessagesSerilizableItems> onSuccess, String id, ItemStack itemStack){
-        BlueFusionCustomMessagesSerilizableItems.ReturnStaticAsync(BlueFusionCustomMessagesSerilizableItems.class, coreConfig -> {
+        BlueFusionCustomMessagesSerilizableItems.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesSerilizableItems.class, coreConfig -> {
             coreConfig.AddItemStack(id, itemStack);
-            coreConfig.SaveConfig(onSuccess, Throwable::printStackTrace);
-        }, Throwable::printStackTrace);
+            coreConfig.SaveDreamConfig(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), onSuccess);
+        });
     }
 
     public static void BlueFusionCustomMessagesResetConfigs(){
-        BlueFusionCustomMessagesConfig.ReturnStaticAsync( BlueFusionCustomMessagesConfig.class, coreConfig -> {
+        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesConfig.class, coreConfig -> {
             if(!coreConfig.systemEnabled) return;
-            DreamConfig.GetDreamfireConfig().RegisterStatic(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), true);
+            DreamConfig.GetDreamConfig().RegisterStatic(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), true);
             new BlueFusionCustomMessagesResetConfigEvent();
-        }, Throwable::printStackTrace);
+        });
     }
 
     public static void BlueFusionCustomMessagesReloadConfigs(){
-        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessagesConfig.class, coreConfig -> {
+        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesConfig.class, coreConfig -> {
             if(!coreConfig.systemEnabled) return;
-            DreamConfig.GetDreamfireConfig().RegisterStatic(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), true);
+            DreamConfig.GetDreamConfig().RegisterStatic(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), true);
             new BlueFusionCustomMessagesReloadConfigEvent();
-        }, Throwable::printStackTrace);
+        });
     }
 }

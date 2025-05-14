@@ -1,5 +1,6 @@
 package com.dreamfirestudios.bluefusioncustommessages.ServerCommand;
 
+import com.dreamfirestudios.bluefusioncustommessages.BlueFusionCustomMessages;
 import com.dreamfirestudios.dreamCommand.Interface.PCMethod;
 import com.dreamfirestudios.dreamCommand.Interface.PCSignature;
 import com.dreamfirestudios.dreamCommand.ServerCommand;
@@ -31,44 +32,44 @@ public class BlueFusionCustomMessagesServerCommand extends ServerCommand {
     @PCMethod
     @PCSignature({})
     public void BlueFusionCustomMessagesMethod(CommandSender commandSender){
-        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessagesConfig.class, craftLegendsCoreConfig -> {
+        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesConfig.class, craftLegendsCoreConfig -> {
             if(!craftLegendsCoreConfig.systemEnabled) return;
-            BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
+            BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
                 craftLegendsCoreMessages.SendMessageToConsole(Messages.SystemIsntEnabled);
-            }, Throwable::printStackTrace);
-        }, Throwable::printStackTrace);
+            });
+        });
     }
 
     @PCMethod
     @PCSignature({"enable"})
     public void BlueFusionCustomMessagesEnableMethod(CommandSender commandSender, boolean state){
         BlueFusionCustomMessagesAPI.BlueFusionCustomMessagesEnableSystem(dreamCoreTestTemplateConfig -> {}, state);
-        BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
+        BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
             craftLegendsCoreMessages.SendMessageToConsole(state ? Messages.ConsoleEnabledSystem : Messages.ConsoleDisableSystem);
-        }, Throwable::printStackTrace);
+        });
     }
 
     @PCMethod
     @PCSignature({"configs", "reset"})
     public void BlueFusionCustomMessagesConfigsResetMethod(CommandSender commandSender){
-        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessagesConfig.class, craftLegendsCoreConfig -> {
+        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesConfig.class, craftLegendsCoreConfig -> {
             if(!craftLegendsCoreConfig.systemEnabled) return;
             BlueFusionCustomMessagesAPI.BlueFusionCustomMessagesResetConfigs();
-            BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
+            BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
                 craftLegendsCoreMessages.SendMessageToConsole(Messages.PlayerResetConfig);
-            }, Throwable::printStackTrace);
-        }, Throwable::printStackTrace);
+            });
+        });
     }
 
     @PCMethod
     @PCSignature({"configs", "reload"})
     public void BlueFusionCustomMessagesConfigsReloadMethod(CommandSender commandSender){
-        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessagesConfig.class, craftLegendsCoreConfig -> {
+        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesConfig.class, craftLegendsCoreConfig -> {
             if(!craftLegendsCoreConfig.systemEnabled) return;
             BlueFusionCustomMessagesAPI.BlueFusionCustomMessagesResetConfigs();
-            BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
+            BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
                 craftLegendsCoreMessages.SendMessageToConsole(Messages.PlayerReloadedConfig);
-            }, Throwable::printStackTrace);
-        }, Throwable::printStackTrace);
+            });
+        });
     }
 }

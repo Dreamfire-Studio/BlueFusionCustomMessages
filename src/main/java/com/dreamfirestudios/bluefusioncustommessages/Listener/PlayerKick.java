@@ -1,5 +1,6 @@
 package com.dreamfirestudios.bluefusioncustommessages.Listener;
 
+import com.dreamfirestudios.bluefusioncustommessages.BlueFusionCustomMessages;
 import com.dreamfirestudios.bluefusioncustommessages.PulseConfig.BlueFusionCustomMessagesConfig;
 import com.dreamfirestudios.dreamCore.DreamfireChat.DreamfireMessage;
 import com.dreamfirestudios.dreamCore.DreamfireJava.PulseAutoRegister;
@@ -14,9 +15,9 @@ public class PlayerKick implements Listener {
     private BlueFusionCustomMessagesConfig blueFusionCustomMessagesConfig;
 
     public PlayerKick(){
-        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessagesConfig.class, blueFusionCustomMessagesConfig -> {
+        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesConfig.class, blueFusionCustomMessagesConfig -> {
             this.blueFusionCustomMessagesConfig = blueFusionCustomMessagesConfig;
-        }, Throwable::printStackTrace);
+        });
     }
 
     @EventHandler

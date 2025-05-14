@@ -1,5 +1,6 @@
 package com.dreamfirestudios.bluefusioncustommessages.Listener;
 
+import com.dreamfirestudios.bluefusioncustommessages.BlueFusionCustomMessages;
 import com.dreamfirestudios.bluefusioncustommessages.PulseConfig.BlueFusionCustomMessagesConfig;
 import com.dreamfirestudios.dreamCore.DreamfireChat.DreamfireMessage;
 import com.dreamfirestudios.dreamCore.DreamfireJava.PulseAutoRegister;
@@ -13,13 +14,13 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class PlayerLeave implements Listener {
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event){
-        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessagesConfig.class, blueFusionCustomMessagesConfig -> {
+        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesConfig.class, blueFusionCustomMessagesConfig -> {
             if(!blueFusionCustomMessagesConfig.systemEnabled) return;
             if(blueFusionCustomMessagesConfig.leaveMessage.isEmpty()) return;
             var player = event.getPlayer();
             var joinMessage = blueFusionCustomMessagesConfig.leaveMessage;
             var joinMessagePlaceholder = PlaceholderAPI.setPlaceholders(player, joinMessage);
             Bukkit.broadcast(DreamfireMessage.formatMessage(joinMessagePlaceholder, player));
-        }, Throwable::printStackTrace);
+        });
     }
 }

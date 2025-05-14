@@ -27,6 +27,6 @@ public class BlueFusionCustomMessagesConfig extends StaticPulseConfig<BlueFusion
     public void ToggleSystemEnabled(Consumer<BlueFusionCustomMessagesConfig> onSuccess, boolean newState){
         new BlueFusionCustomMessagesEnableSystemEvent(systemEnabled, newState);
         systemEnabled = newState;
-        SaveConfig(onSuccess, Throwable::printStackTrace);
+        SaveDreamConfig(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), onSuccess);
     }
 }

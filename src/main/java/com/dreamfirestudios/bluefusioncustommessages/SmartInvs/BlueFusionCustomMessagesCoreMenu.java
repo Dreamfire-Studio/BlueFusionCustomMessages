@@ -1,5 +1,6 @@
 package com.dreamfirestudios.bluefusioncustommessages.SmartInvs;
 
+import com.dreamfirestudios.bluefusioncustommessages.BlueFusionCustomMessages;
 import com.dreamfirestudios.dreamCore.DreamfireSmartInvs.SmartInventory;
 import com.dreamfirestudios.dreamCore.DreamfireSmartInvs.content.InventoryContents;
 import com.dreamfirestudios.dreamCore.DreamfireSmartInvs.content.InventoryProvider;
@@ -31,7 +32,7 @@ public class BlueFusionCustomMessagesCoreMenu implements InventoryProvider {
 
     public CompletableFuture<Void> init(Player player, InventoryContents inventoryContents) {
         CompletableFuture<Void> future = new CompletableFuture<>();
-        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessagesConfig.class, craftLegendsCoreConfig -> {
+        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesConfig.class, craftLegendsCoreConfig -> {
             BlueFusionCustomMessagesSmartInvsItems.InventoryItem(player, InventoryItems.BlankTile, clickableItem -> {
                 inventoryContents.fillRow(0, clickableItem);
             }, this::BlankTileClick);
@@ -59,7 +60,7 @@ public class BlueFusionCustomMessagesCoreMenu implements InventoryProvider {
             }, this::ResetConfigsClick);
 
             future.complete(null);
-        }, future::completeExceptionally);
+        });
         return future;
     }
 
@@ -68,26 +69,26 @@ public class BlueFusionCustomMessagesCoreMenu implements InventoryProvider {
     }
 
     private void SystemEnabledClick(Player player, InventoryClickEvent inventoryClickEvent){
-        BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
+        BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
             if(!craftLegendsCorePermissions.DoesPlayerHavePermission(Permissions.EnableSystem, player, true)) return;
             BlueFusionCustomMessagesAPI.BlueFusionCustomMessagesEnableSystem(dreamCoreTestTemplateConfig -> {});
             smartInventory.open(player);
-        }, Throwable::printStackTrace);
+        });
     }
 
     private void ReloadConfigsClick(Player player, InventoryClickEvent inventoryClickEvent) {
-        BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
+        BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
             if (!craftLegendsCorePermissions.DoesPlayerHavePermission(Permissions.ReloadConfigs, player, true)) return;
             BlueFusionCustomMessagesAPI.BlueFusionCustomMessagesReloadConfigs();
             smartInventory.open(player);
-        }, Throwable::printStackTrace);
+        });
     }
 
     private void ResetConfigsClick(Player player, InventoryClickEvent inventoryClickEvent){
-        BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
+        BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
             if(!craftLegendsCorePermissions.DoesPlayerHavePermission(Permissions.ResetConfigs, player, true)) return;
             BlueFusionCustomMessagesAPI.BlueFusionCustomMessagesResetConfigs();
             smartInventory.open(player);
-        }, Throwable::printStackTrace);
+        });
     }
 }

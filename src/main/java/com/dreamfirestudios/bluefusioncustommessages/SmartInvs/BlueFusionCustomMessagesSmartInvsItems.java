@@ -1,5 +1,6 @@
 package com.dreamfirestudios.bluefusioncustommessages.SmartInvs;
 
+import com.dreamfirestudios.bluefusioncustommessages.BlueFusionCustomMessages;
 import com.dreamfirestudios.dreamCore.DreamfireSmartInvs.ClickableItem;
 import com.dreamfirestudios.bluefusioncustommessages.Enum.InventoryItems;
 import com.dreamfirestudios.bluefusioncustommessages.PulseConfig.BlueFusionCustomMessagesInventoryItems;
@@ -14,30 +15,30 @@ import java.util.function.Function;
 
 public class BlueFusionCustomMessagesSmartInvsItems {
     public static void SerializedItem(Player player, String itemID, Function<ItemStack, ItemStack> testFunction, Consumer<ClickableItem> clickableItemConsumer, BiConsumer<Player, InventoryClickEvent> inventoryClickEventConsumer) {
-        BlueFusionCustomMessagesSerilizableItems.ReturnStaticAsync(BlueFusionCustomMessagesSerilizableItems.class, craftLegendsCoreSerilizableItems -> {
+        BlueFusionCustomMessagesSerilizableItems.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesSerilizableItems.class, craftLegendsCoreSerilizableItems -> {
             var itemStack = testFunction.apply(craftLegendsCoreSerilizableItems.GetItemStack(itemID).clone());
             clickableItemConsumer.accept(ClickableItem.of(itemStack, event -> inventoryClickEventConsumer.accept(player, event)));
-        }, Throwable::printStackTrace);
+        });
     }
 
     public static void InventoryItemWithFeedback(Player player, InventoryItems inventoryItems, Function<ItemStack, ItemStack> testFunction, Consumer<ClickableItem> clickableItemConsumer, BiConsumer<Player, InventoryClickEvent> inventoryClickEventConsumer) {
-        BlueFusionCustomMessagesInventoryItems.ReturnStaticAsync(BlueFusionCustomMessagesInventoryItems.class, craftLegendsCoreInventoryItems -> {
+        BlueFusionCustomMessagesInventoryItems.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesInventoryItems.class, craftLegendsCoreInventoryItems -> {
             var itemStack = testFunction.apply(craftLegendsCoreInventoryItems.GetValue(inventoryItems).clone());
             clickableItemConsumer.accept(ClickableItem.of(itemStack, event -> inventoryClickEventConsumer.accept(player, event)));
-        }, Throwable::printStackTrace);
+        });
     }
 
     public static void InventoryItem(Player player, InventoryItems inventoryItems, Consumer<ClickableItem> clickableItemConsumer, BiConsumer<Player, InventoryClickEvent> inventoryClickEventConsumer) {
-        BlueFusionCustomMessagesInventoryItems.ReturnStaticAsync(BlueFusionCustomMessagesInventoryItems.class, craftLegendsCoreInventoryItems -> {
+        BlueFusionCustomMessagesInventoryItems.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesInventoryItems.class, craftLegendsCoreInventoryItems -> {
             var itemStack = craftLegendsCoreInventoryItems.GetValue(inventoryItems).clone();
             clickableItemConsumer.accept(ClickableItem.of(itemStack, event -> inventoryClickEventConsumer.accept(player, event)));
-        }, Throwable::printStackTrace);
+        });
     }
 
     public static void SystemEnabled(Player player, boolean isEnabled, Consumer<ClickableItem> clickableItemConsumer, BiConsumer<Player, InventoryClickEvent> inventoryClickEventConsumer){
-        BlueFusionCustomMessagesInventoryItems.ReturnStaticAsync(BlueFusionCustomMessagesInventoryItems.class, craftLegendsCoreInventoryItems -> {
+        BlueFusionCustomMessagesInventoryItems.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesInventoryItems.class, craftLegendsCoreInventoryItems -> {
             var itemStack = craftLegendsCoreInventoryItems.GetValue(InventoryItems.SystemEnabled).clone();
             clickableItemConsumer.accept(ClickableItem.of(itemStack, event -> inventoryClickEventConsumer.accept(player, event)));
-        }, Throwable::printStackTrace);
+        });
     }
 }

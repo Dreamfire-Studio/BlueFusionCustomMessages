@@ -30,12 +30,12 @@ public class BlueFusionCustomMessagesMessages extends StaticEnumPulseConfig<Blue
     }
 
     public void SendMessageToPlayerPermission(Messages message, Permissions nexusCorePermission, Object... objects){
-        com.dreamfirestudios.bluefusioncustommessages.PulseConfig.BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
+        BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
             for(var player : Bukkit.getOnlinePlayers()){
                 if(!craftLegendsCorePermissions.DoesPlayerHavePermission(nexusCorePermission, player, false)) continue;
                 SendMessageToPlayer(message, player, objects);
             }
-        }, Throwable::printStackTrace);
+        });
     }
 
     public void SendMessageToPlayer(Messages message, Player player, Object... objects){

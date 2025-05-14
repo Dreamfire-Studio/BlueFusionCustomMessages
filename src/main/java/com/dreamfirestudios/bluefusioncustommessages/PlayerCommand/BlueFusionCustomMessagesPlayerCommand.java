@@ -1,5 +1,6 @@
 package com.dreamfirestudios.bluefusioncustommessages.PlayerCommand;
 
+import com.dreamfirestudios.bluefusioncustommessages.BlueFusionCustomMessages;
 import com.dreamfirestudios.dreamCommand.Enums.TabType;
 import com.dreamfirestudios.dreamCommand.Interface.PCAutoTab;
 import com.dreamfirestudios.dreamCommand.Interface.PCMethod;
@@ -44,10 +45,10 @@ public class BlueFusionCustomMessagesPlayerCommand extends PlayerCommand {
     public void TimeStealCoreMethod(UUID playerID){
         var player = Bukkit.getPlayer(playerID);
         if(player == null) return;
-        BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
+        BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
             if(!craftLegendsCorePermissions.DoesPlayerHavePermission(Permissions.AdminConsole, player, true)) return;
             new BlueFusionCustomMessagesCoreMenu(player);
-        }, Throwable::printStackTrace);
+        });
     }
 
     @PCMethod
@@ -56,13 +57,13 @@ public class BlueFusionCustomMessagesPlayerCommand extends PlayerCommand {
     public void TimeStealCoreEnableMethod(UUID playerID, boolean state){
         var player = Bukkit.getPlayer(playerID);
         if(player == null) return;
-        BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
+        BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
             if(!craftLegendsCorePermissions.DoesPlayerHavePermission(Permissions.EnableSystem, player, true)) return;
             BlueFusionCustomMessagesAPI.BlueFusionCustomMessagesEnableSystem(dreamCoreTestTemplateConfig -> {}, state);
-            BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
+            BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
                 craftLegendsCoreMessages.SendMessageToPlayer(state ? Messages.ConsoleEnabledSystem : Messages.ConsoleDisableSystem, player);
-            }, Throwable::printStackTrace);
-        }, Throwable::printStackTrace);
+            });
+        });
     }
 
     @PCMethod
@@ -71,13 +72,13 @@ public class BlueFusionCustomMessagesPlayerCommand extends PlayerCommand {
     public void TimeStealCoreSerializeItemMethod(UUID playerUUID, String itemName){
         var player = Bukkit.getPlayer(playerUUID);
         if(player == null) return;
-        BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
+        BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
             if(!craftLegendsCorePermissions.DoesPlayerHavePermission(Permissions.SerializeItem, player, true)) return;
             BlueFusionCustomMessagesAPI.BlueFusionCustomMessagesSerializeItem(dreamCoreTestTemplateSerilizableItems -> {}, itemName, player.getInventory().getItemInMainHand());
-            BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
+            BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
                 craftLegendsCoreMessages.SendMessageToPlayer(Messages.PlayerSerlizedItem, player, itemName);
-            }, Throwable::printStackTrace);
-        }, Throwable::printStackTrace);
+            });
+        });
     }
 
     @PCMethod
@@ -85,16 +86,16 @@ public class BlueFusionCustomMessagesPlayerCommand extends PlayerCommand {
     public void TimeStealCoreConfigsResetMethod(UUID playerID){
         var player = Bukkit.getPlayer(playerID);
         if(player == null) return;
-        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessagesConfig.class, craftLegendsCoreConfig -> {
+        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesConfig.class, craftLegendsCoreConfig -> {
             if(!craftLegendsCoreConfig.systemEnabled) return;
-            BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
+            BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
                 if(!craftLegendsCorePermissions.DoesPlayerHavePermission(Permissions.ResetConfigs, player, true)) return;
                 BlueFusionCustomMessagesAPI.BlueFusionCustomMessagesResetConfigs();
-                BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
+                BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
                     craftLegendsCoreMessages.SendMessageToPlayer(Messages.PlayerResetConfig, player);
-                }, Throwable::printStackTrace);
-            }, Throwable::printStackTrace);
-        }, Throwable::printStackTrace);
+                });
+            });
+        });
     }
 
     @PCMethod
@@ -102,15 +103,15 @@ public class BlueFusionCustomMessagesPlayerCommand extends PlayerCommand {
     public void TimeStealCoreReloadMethod(UUID playerID){
         var player = Bukkit.getPlayer(playerID);
         if(player == null) return;
-        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessagesConfig.class, craftLegendsCoreConfig -> {
+        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesConfig.class, craftLegendsCoreConfig -> {
             if(!craftLegendsCoreConfig.systemEnabled) return;
-            BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
+            BlueFusionCustomMessagesPermissions.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesPermissions.class, craftLegendsCorePermissions -> {
                 if(!craftLegendsCorePermissions.DoesPlayerHavePermission(Permissions.ReloadConfigs, player, true)) return;
                 BlueFusionCustomMessagesAPI.BlueFusionCustomMessagesReloadConfigs();
-                BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
+                BlueFusionCustomMessagesMessages.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesMessages.class, craftLegendsCoreMessages -> {
                     craftLegendsCoreMessages.SendMessageToPlayer(Messages.PlayerReloadedConfig, player);
-                }, Throwable::printStackTrace);
-            }, Throwable::printStackTrace);
-        }, Throwable::printStackTrace);
+                });
+            });
+        });
     }
 }

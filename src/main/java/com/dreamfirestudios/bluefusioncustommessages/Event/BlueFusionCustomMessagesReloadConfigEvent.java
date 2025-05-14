@@ -12,10 +12,10 @@ public class BlueFusionCustomMessagesReloadConfigEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
 
     public BlueFusionCustomMessagesReloadConfigEvent(){
-        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessagesConfig.class, coreConfig -> {
+        BlueFusionCustomMessagesConfig.ReturnStaticAsync(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), BlueFusionCustomMessagesConfig.class, coreConfig -> {
             if(coreConfig.systemEnabled) return;
             Bukkit.getScheduler().runTask(BlueFusionCustomMessages.GetBlueFusionCustomMessages(), () -> {Bukkit.getPluginManager().callEvent(this);});
-        }, Throwable::printStackTrace);
+        });
     }
 
     public static HandlerList getHandlerList() {
